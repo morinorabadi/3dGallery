@@ -7,6 +7,9 @@ import RedLib from './redlib/core'
 import Camera from './utils/camera';
 import Renderer from './utils/renderer';
 
+import { GUI } from 'dat.gui'
+const gui = new GUI()
+
 const redLibcore = new RedLib()
 
 // create scene
@@ -38,8 +41,10 @@ redLibcore.globalEvent.addCallBack('process', (delta) => {
 
 // create camera
 const camera = new Camera(redLibcore)
-camera.position.set(0,2000,-10000)
+camera.position.set(0,5000,-14000)
 camera.lookAt(new THREE.Vector3())
+
+
 // create renderer
 const renderer = new Renderer(redLibcore,scene,camera)
 
