@@ -1,4 +1,4 @@
-export default function imageContainer(object)
+export default function imageContainer(object, event)
 {
   return new Promise((resolve, reject) => {
     const image = document.createElement('img')
@@ -8,5 +8,9 @@ export default function imageContainer(object)
     image.classList.add('image-container')
     image.src = object.src
     image.setAttribute('id', `image_${object.id}`)
+
+    image.addEventListener("mouseover", () => {
+      event.callEvent("imageHover", object)
+    });
   })
 }
