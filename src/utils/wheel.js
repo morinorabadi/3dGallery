@@ -17,9 +17,7 @@ export default class Wheel extends THREE.Group
     const radius = 6000
     
     let currentY = 0
-    let rotateAmount = 999
 
-    let activeImageIndex = 0
     let orderedImages = []
 
     let categoriesTitle = []
@@ -30,50 +28,39 @@ export default class Wheel extends THREE.Group
       return new THREE.Vector3(position.x , 0, position.y)
     }
 
-    function activeImage(newIndex){
-      // first deActive ol image
-      const oldImage = orderedImages[activeImageIndex]
-      if (oldImage){
-        oldImage.image.element.children[0].style.opacity = 0
-        oldImage.image.object3d.position.copy(calculatePositionWithAngle(oldImage.angle, radius))
+    let activeImageObject = undefined
+    function activeImage(object){
+      if (activeImageObject.image.id == object.image.id ) {return}
+      console.log(":ok");
+      // first deActive old image
+      if (activeImageObject){
+        activeImageObject.image.element.children[0].style.opacity = 0
+        activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, radius))
       }
       
       // update index
-      activeImageIndex += newIndex
-      if (activeImageIndex < 0){
-        activeImageIndex = orderedImages.length
-      } 
-      if (activeImageIndex > orderedImages.length ){
-        activeImageIndex = 0
-      } 
-
-      const newImage = orderedImages[activeImageIndex]
-      if (newImage){
-        newImage.image.element.children[0].style.opacity = 1
-        newImage.image.object3d.position.copy(calculatePositionWithAngle(newImage.angle, radius + 500))
-        event.callEvent('activeImage', newImage.image)
-      }
+      activeImageObject = object
+      activeImageObject.image.element.children[0].style.opacity = 1
+      activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, radius + 500))
+      // event.callEvent('activeImage', activeImageObject.image)
 
     }
 
 
     this.rotateY = (angle) => {
-      // rotate wheel
-      super.rotateY(angle)
-
-      // check if camera is in mid mode
-      if (data.cameraMode !== "mid"){ return }
-      
       currentY += angle
-      if (Math.abs(currentY) > rotateAmount){
-        if (currentY > 0){
-          activeImage(1)
-          currentY -= rotateAmount
-        } else {
-          activeImage(-1)
-          currentY += rotateAmount
-        }
-      }
+      
+      orderedImages.forEach(object => {
+          if ( object ){
+            const imageAngle = object.angle + currentY
+            object.image.object3d.position.copy(calculatePositionWithAngle(imageAngle, radius))
+            object.image.object3d.rotation.y = -imageAngle * (Math.PI/180)
+            if ( imageAngle % 360 < 3){
+              activeImage(object)
+            }
+          }
+      })
+      activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, radius + 500))
     }
 
     // create wheel
@@ -107,7 +94,7 @@ export default class Wheel extends THREE.Group
         object.scale.set(-imageScale,imageScale,imageScale)
         
         // position
-        object.position.copy(calculatePositionWithAngle(angle, radius))
+        // object.position.copy(calculatePositionWithAngle(angle, radius))
       
         // rotation
         object.rotation.y = -angle * (Math.PI/180)
@@ -149,7 +136,7 @@ export default class Wheel extends THREE.Group
         } else {
           orderedImages.push(undefined)
         }
-
+        activeImageObject = orderedImages[0]
       }
 
       // animate wheel
@@ -158,11 +145,6 @@ export default class Wheel extends THREE.Group
         // console.log(rotationsY.y);
         // this.rotateY()
       // }})
-
-      rotateAmount = 360/imageIds.length * (Math.PI/180)
-      activeImageIndex = imageIds.length - 2
-
-      activeImage(1)
     }
   }
 }

@@ -21,8 +21,8 @@ export default class Camera extends PerspectiveCamera
           break;
 
         case "mid":
-          this.position.set(6500,1000,-5000)
-          this.lookAt(new Vector3(6500,-600,0))
+          this.position.set(7000,1000,-3000)
+          this.lookAt(new Vector3(6000,-500,0))
           break;
       }
     }

@@ -27,7 +27,7 @@ export default class RotateWheel
 
     // smooth rotate
     const RotateDelta = 0.001
-    const wheelRotateAmount = 0.005
+    const wheelRotateAmount = 0.5
 
     redlibcore.globalEvent.addCallBack('process', (delta) => {
       if (!isRotateAround){ return }
