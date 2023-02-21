@@ -4,11 +4,12 @@ import { CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer'
 
 export default class Wheel extends THREE.Group
 {
-  constructor(images){
+  constructor(data){
     super()
+    const { objects, event } = data
 
     // create object3d for each image
-    images.forEach(image => {
+    objects.forEach(image => {
       image.object3d = new CSS3DObject(image.element)
       image.asActive = false
     });
@@ -50,15 +51,19 @@ export default class Wheel extends THREE.Group
       if (newImage){
         newImage.image.element.children[0].style.opacity = 1
         newImage.image.object3d.position.copy(calculatePositionWithAngle(newImage.angle, radius + 500))
+        event.callEvent('activeImage', newImage.image)
       }
+
     }
 
 
     this.rotateY = (angle) => {
-      // console.log("angle");
+      // rotate wheel
       super.rotateY(angle)
-      // console.log(angle);
 
+      // check if camera is in mid mode
+      if (data.cameraMode !== "mid"){ return }
+      
       currentY += angle
       if (Math.abs(currentY) > rotateAmount){
         if (currentY > 0){
@@ -95,8 +100,6 @@ export default class Wheel extends THREE.Group
       })
 
       orderedImages = []
-      activeImageIndex = imageIds.length - 2
-
       
       const imageScale = 2
       function setPositions(object, angle){
@@ -122,7 +125,7 @@ export default class Wheel extends THREE.Group
         if (id !== undefined){
           
           // find image
-          const image = images.find( object => object.id == id )
+          const image = objects.find( object => object.id == id )
           
           setPositions(image.object3d,angle)
 
@@ -157,7 +160,9 @@ export default class Wheel extends THREE.Group
       // }})
 
       rotateAmount = 360/imageIds.length * (Math.PI/180)
-      console.log(imageIds.length);
+      activeImageIndex = imageIds.length - 2
+
+      activeImage(1)
     }
   }
 }

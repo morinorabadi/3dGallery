@@ -16,7 +16,7 @@ export default function imageContainer(object, event)
 
 
     image.addEventListener("mouseover", () => {
-      // event.callEvent("imageHover", object)
+      event.callEvent("activeImage", object, true)
     });
   })
 }

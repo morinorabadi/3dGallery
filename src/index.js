@@ -22,7 +22,7 @@ function init(){
     const scene = new THREE.Scene()
 
     // wheel
-    const wheel = new Wheel(data.objects)
+    const wheel = new Wheel(data)
     scene.add(wheel)
     wheel.generate(data.categories.order1)
 
@@ -30,18 +30,26 @@ function init(){
     const rotateWheel = new RotateWheel(redlibcore, wheel)
 
 
-    const show = new Show(redlibcore)
+    const show = new Show(redlibcore, data.event )
     // listen to hover effect
-    data.event.addCallBack("imageHover", (object) => {
+    data.event.addCallBack("activeImage", (object, isHover) => {
+        // check if camera is in top mode
+        if (data.cameraMode !== "top" && isHover){ return }
         show.update(object)
     })
 
     const camera = new Camera(redlibcore)
-    camera.setMode("mid")
+    data.event.addEvent('cameraMode')
+    data.event.addCallBack("cameraMode", (mode) => {
+        data.cameraMode = mode
+        camera.setMode(mode)
+    })
+    data.event.callEvent("cameraMode", "mid")
 
     // create renderer
     const renderer = new Renderer(redlibcore,scene,camera)
 
+    console.log(data);
     redlibcore.sizes.resize()
 }
 

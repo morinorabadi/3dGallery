@@ -14,7 +14,7 @@ export default async function load()
       
       // create Event object
       data.event = new Events()
-      data.event.addEvent('imageHover')
+      data.event.addEvent('activeImage')
       
       const loadingElement = document.querySelector('#loading p')
   

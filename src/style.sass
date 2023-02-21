@@ -3,21 +3,37 @@
     padding: 0
     box-sizing: border-box
 body
-    overflow: hidden
+    overflow: hidden   
+    background: #363636
+    color : white
 
 #scene
-    background: #8fc39f66
+    // background: #8fc39f66
     position: absolute
 
 #show
     top: 0
     left: 0
     position: absolute
-    width: 50vw 
+    // background: #ff00001e
+    pointer-events: none
+
+.image-show
+    display: grid
+    height: 100%
+    grid-template-row: 1fr 5fr
+    align-items: center
+
     p
-        font-size : 40px
+        text-align: center
+        object-fit : cover
+        font-size: 50px
     img
-        width: 100%
+        width: 80%
+        height: 60%
+        margin: 0 auto
+
+
 .anti-select
     width: 100vw
     height: 100vh
@@ -36,7 +52,7 @@ body
         object-fit : cover
         // filter: blur(2px)
         // -webkit-filter: blur(2px)
-        border: 14px solid white
+        border: 10px solid #4d4d4d
     p
         opacity: 0
         word-wrap: break-word
@@ -56,7 +72,7 @@ p.gategory
     position: fixed
     top: 0
     left: 0
-    background: #2f2f2f
+    // background: #2f2f2f
     color: white
     text-align: center
 
