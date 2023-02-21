@@ -6,7 +6,7 @@ body
     overflow: hidden
 
 #scene
-    // background: #8fc39f66
+    background: #8fc39f66
     position: absolute
 
 #show
@@ -18,13 +18,38 @@ body
         font-size : 40px
     img
         width: 100%
-
+.anti-select
+    width: 100vw
+    height: 100vh
+    position: fixed
+    top: 0
+    left: 0
+    z-index: 10
 .image-container
-    width: 1600px
-    height: 900px
-    object-fit : cover
-    filter: blur(2px)
-    -webkit-filter: blur(2px)
+    display: grid
+    width: 800px
+    height: 320px
+    grid-template-columns: 1fr 2fr
+    img
+        width: 400px
+        height: 320px
+        object-fit : cover
+        // filter: blur(2px)
+        // -webkit-filter: blur(2px)
+        border: 14px solid white
+    p
+        opacity: 0
+        word-wrap: break-word
+        direction: rtl
+        font-size: 30px
+        padding: 40px 20px 0 0
+p.gategory
+    width: 800px
+    height: 320px
+
+    color: balck
+    font-size: 40px
+
 #loading
     width: 100vw
     height: 100vh

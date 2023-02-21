@@ -24,7 +24,7 @@ function init(){
     // wheel
     const wheel = new Wheel(data.objects)
     scene.add(wheel)
-    wheel.generate("test")
+    wheel.generate(data.categories.order1)
 
     // rotate Wheel
     const rotateWheel = new RotateWheel(redlibcore, wheel)
@@ -35,13 +35,9 @@ function init(){
     data.event.addCallBack("imageHover", (object) => {
         show.update(object)
     })
-    
 
-    // create camera
     const camera = new Camera(redlibcore)
-    camera.position.set(0,9000,-14000)
-    camera.lookAt(new THREE.Vector3())
-
+    camera.setMode("mid")
 
     // create renderer
     const renderer = new Renderer(redlibcore,scene,camera)
