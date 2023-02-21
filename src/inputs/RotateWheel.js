@@ -15,35 +15,25 @@ export default class RotateWheel
       startTouch = touch
     })
 
-    function isPositive(number){
-      if (number > 0) {return true}
-      else { return false }
-    }
-
-    function addRotateAmount(amount){
-      if (isPositive(amount) !== isPositive(rotateAmount)){
-        rotateAmount = 0
-      }
-      rotateAmount += amount
-    }
-
     redlibcore.globalEvent.addCallBack("touchDrag", (touch) => {
       if ( isActive ){
-        addRotateAmount(startTouch.y - touch.y)
-        addRotateAmount(startTouch.x - touch.x)
+        rotateAmount += startTouch.yPixel - touch.yPixel
+        rotateAmount += startTouch.xPixel - touch.xPixel
         isRotateAround = true
+        startTouch = touch
       }
     })
 
 
     // smooth rotate
     const RotateDelta = 0.001
-    const wheelRotateAmount = -0.05
+    const wheelRotateAmount = 0.005
 
     redlibcore.globalEvent.addCallBack('process', (delta) => {
       if (!isRotateAround){ return }
       const rotate = rotateAmount * delta * RotateDelta
       rotateAmount -= rotate
+      // wheel.rotation.y += rotate * wheelRotateAmount
       wheel.rotateY(rotate* wheelRotateAmount )
       // console.log(rotateAmount);
       if (Math.abs(rotateAmount) < 0.1){
