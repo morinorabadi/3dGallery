@@ -1,0 +1,563 @@
+{
+  "baseUrl": "http://localhost:5500",
+  "objects": [
+    {
+      "id": 487,
+      "title": "UniFun Tianfu Chengdu",
+      "src": "/public/images/487.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 1093,
+      "title": "Shenzhen Shuiwan 1979 Skyscraper",
+      "src": "/public/images/1093.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 1562,
+      "title": "Jing Mian Xin Cheng",
+      "src": "/public/images/1562.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 1680,
+      "title": "Wusi Bei Tahoe Plaza Fuzhou",
+      "src": "/public/images/1680.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 1768,
+      "title": "Zhuzong Vanke Plaza Beijing",
+      "src": "/public/images/1768.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2011,
+      "title": "Shoukai Vanke Centre Beijing",
+      "src": "/public/images/2011.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2350,
+      "title": "Shoukai Vanke Centre Sales Gallery",
+      "src": "/public/images/2350.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2415,
+      "title": "Poly Tianhui Centre Tianjin",
+      "src": "/public/images/2415.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2502,
+      "title": "Super City",
+      "src": "/public/images/2502.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2503,
+      "title": "Raffles City Beijing",
+      "src": "/public/images/2503.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2504,
+      "title": "One Mont Kiara",
+      "src": "/public/images/2504.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2505,
+      "title": "Raffles City Ningbo",
+      "src": "/public/images/2505.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2506,
+      "title": "Pan Pacific Ningbo Hotel",
+      "src": "/public/images/2506.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2508,
+      "title": "Qingdao Red Island Hotel",
+      "src": "/public/images/2508.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2510,
+      "title": "iFree Cinema Chongqing",
+      "src": "/public/images/2510.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2512,
+      "title": "Vantone Centre",
+      "src": "/public/images/2512.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2513,
+      "title": "JCC Hangzhou",
+      "src": "/public/images/2513.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2514,
+      "title": "Jewellery Box Chaowai",
+      "src": "/public/images/2514.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2515,
+      "title": "Jiuxi Wedding Exhibition",
+      "src": "/public/images/2515.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2516,
+      "title": "Jianzi Box",
+      "src": "/public/images/2516.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2517,
+      "title": "Cube Gallery",
+      "src": "/public/images/2517.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2518,
+      "title": "Super Tent",
+      "src": "/public/images/2518.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2519,
+      "title": "NOBO International Kindergarten Daqing",
+      "src": "/public/images/2519.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2520,
+      "title": "The Cube - Taiyuan City of Light",
+      "src": "/public/images/2520.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2521,
+      "title": "Play Stack-Rotterdam Life Plaza Shenyang",
+      "src": "/public/images/2521.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2522,
+      "title": "NOBO Education Visual Identity",
+      "src": "/public/images/2522.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2524,
+      "title": "Yuansu Hot Spring Resort Wuyi",
+      "src": "/public/images/2524.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2525,
+      "title": "Qingdao Vanke Business Park",
+      "src": "/public/images/2525.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2526,
+      "title": "Paradise Walk Beijing Chang'An",
+      "src": "/public/images/2526.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2527,
+      "title": "Jianling Yuan Shijiazhuang",
+      "src": "/public/images/2527.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2528,
+      "title": "Golden Bund Kindergarten",
+      "src": "/public/images/2528.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2529,
+      "title": "Paradise Walk Wuhan Jiangchen",
+      "src": "/public/images/2529.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2530,
+      "title": "Vanke Feicui Education Centre",
+      "src": "/public/images/2530.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2531,
+      "title": "Qingdao Darron Eco Tech Park",
+      "src": "/public/images/2531.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2532,
+      "title": "N.E.O. Plaza Shanghai",
+      "src": "/public/images/2532.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2533,
+      "title": "The Slope",
+      "src": "/public/images/2533.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2540,
+      "title": "Forte WoliCity Shanghai",
+      "src": "/public/images/2540.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2541,
+      "title": "Paradise Walk Jinchen Xindu",
+      "src": "/public/images/2541.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2542,
+      "title": "Starry Street Chengdu Wuhou",
+      "src": "/public/images/2542.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2543,
+      "title": "SkyMall Shaoxing",
+      "src": "/public/images/2543.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2544,
+      "title": "Chunhuiyuan Spa Resort",
+      "src": "/public/images/2544.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2545,
+      "title": "CapitaMall Nuohemule",
+      "src": "/public/images/2545.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2546,
+      "title": "CIFI Gongchen Fangshan",
+      "src": "/public/images/2546.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2547,
+      "title": "Qinhuangdao Wellness Resort",
+      "src": "/public/images/2547.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2548,
+      "title": "Qingdao Vanke Coastal City",
+      "src": "/public/images/2548.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2549,
+      "title": "Sanya Jinmao Farm Lab",
+      "src": "/public/images/2549.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2551,
+      "title": "Xiaomeisha Transport Centre",
+      "src": "/public/images/2551.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2552,
+      "title": "Beijing Shunyi R&F Gaoliying",
+      "src": "/public/images/2552.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2553,
+      "title": "Beijing Huijing Twin Towers Renovation",
+      "src": "/public/images/2553.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2554,
+      "title": "Sunac Wuhan Snow Park",
+      "src": "/public/images/2554.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2555,
+      "title": "Vanke Shenyang Workers' Village",
+      "src": "/public/images/2555.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2556,
+      "title": "Kaisa V Galleries",
+      "src": "/public/images/2556.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2557,
+      "title": "Uruguay Football School Pingguo",
+      "src": "/public/images/2557.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2558,
+      "title": "Shenzhen Dayun Centre",
+      "src": "/public/images/2558.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2559,
+      "title": "China Overseas Jinan Huashan West B-2",
+      "src": "/public/images/2559.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2560,
+      "title": "Vanke Shenzhen Nanyuan New Village",
+      "src": "/public/images/2560.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2561,
+      "title": "Sunac Meishan Lego Park",
+      "src": "/public/images/2561.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2562,
+      "title": "CapitaLand LJCC Mall Chongqing",
+      "src": "/public/images/2562.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2563,
+      "title": "Kaisa Zhuhai Organic Village",
+      "src": "/public/images/2563.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2567,
+      "title": "Vanke Shanghai B4 TOD",
+      "src": "/public/images/2567.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2569,
+      "title": "Huaqiaocheng Housing",
+      "src": "/public/images/2569.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2570,
+      "title": "Golden Bund Retail",
+      "src": "/public/images/2570.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2572,
+      "title": "EXPO 2020 Chile Pavillion",
+      "src": "/public/images/2572.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2575,
+      "title": "CLOU Sanlitun Office",
+      "src": "/public/images/2575.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2576,
+      "title": "Shenyang Huanyu Plot J Mall",
+      "src": "/public/images/2576.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 2581,
+      "title": "Hongmeng Showroom",
+      "src": "/public/images/2581.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 6660,
+      "title": "Fosun Jinan International Finance Centre",
+      "src": "/public/images/6660.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 6753,
+      "title": "CLOU Shanghai",
+      "src": "/public/images/6753.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 6816,
+      "title": "Plug-in Office",
+      "src": "/public/images/6816.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 6928,
+      "title": "Shunde Vanke Plaza",
+      "src": "/public/images/6928.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 10731,
+      "title": "CapitaMALL  Wangjing",
+      "src": "/public/images/10731.jpg",
+      "redirect": "test.com"
+    },
+    {
+      "id": 10875,
+      "title": "Qingdao Vanke Future City",
+      "src": "/public/images/10875.jpg",
+      "redirect": "test.com"
+    }
+  ],
+  "categories": {
+    "order1": [
+      {
+        "name": "category1 order1",
+        "objectsId": [
+          1093, 1768, 2011, 2415, 2504, 2505, 2512, 2513, 2515, 2517, 2518,
+          2522, 2524, 2527, 2530, 2540, 2542, 2551, 2555, 2557, 2559, 2560,
+          2562, 2567, 2570, 6928
+        ]
+      },
+      {
+        "name": "category2 order1",
+        "objectsId": [
+          487, 1562, 2502, 2503, 2510, 2516, 2520, 2521, 2525, 2526, 2528, 2529,
+          2532, 2533, 2543, 2544, 2546, 2547, 2549, 2552, 2561, 2576, 6816,
+          10731, 10875
+        ]
+      },
+      {
+        "name": "category3 order1",
+        "objectsId": [
+          1680, 2350, 2506, 2508, 2514, 2519, 2531, 2541, 2545, 2548, 2553,
+          2554, 2556, 2558, 2563, 2569, 2572, 2575, 2581, 6660, 6753
+        ]
+      }
+    ],
+    "order2": [
+      {
+        "name": "category1 order2",
+        "objectsId": [
+          487, 1680, 1768, 2011, 2504, 2508, 2510, 2515, 2517, 2521, 2525, 2532,
+          2540, 2546, 2553, 2555, 2560, 2562, 2569, 2570, 2575, 2581
+        ]
+      },
+      {
+        "name": "category2 order2",
+        "objectsId": [
+          2415, 2512, 2518, 2527, 2530, 2533, 2542, 2544, 2545, 2547, 2552,
+          2558, 2561, 2563, 2572, 2576, 6660, 6816, 6928, 10731
+        ]
+      },
+      {
+        "name": "category3 order2",
+        "objectsId": [
+          1093, 1562, 2350, 2503, 2513, 2516, 2522, 2524, 2526, 2528, 2529,
+          2541, 2549, 2554, 2556, 2567
+        ]
+      },
+      {
+        "name": "category4 order2",
+        "objectsId": [
+          2502, 2505, 2506, 2514, 2519, 2520, 2531, 2543, 2548, 2551, 2557,
+          2559, 6753, 10875
+        ]
+      }
+    ],
+    "order3": [
+      {
+        "name": "category1 order3",
+        "objectsId": [
+          1768, 2502, 2503, 2506, 2512, 2513, 2517, 2518, 2520, 2526, 2529,
+          2531, 2533, 2546, 2557, 2558, 2562, 2567, 2569, 2570, 2572, 2575, 2576
+        ]
+      },
+      {
+        "name": "category2 order3",
+        "objectsId": [
+          487, 2510, 2515, 2522, 2530, 2540, 2542, 2544, 2547, 2555, 2556, 2560,
+          2561, 6660, 6816
+        ]
+      },
+      {
+        "name": "category3 order3",
+        "objectsId": [
+          1562, 2011, 2504, 2505, 2508, 2519, 2527, 2528, 2532, 2543, 2548,
+          2553, 2554, 6753, 6928, 10731, 10875
+        ]
+      },
+      {
+        "name": "category4 order3",
+        "objectsId": [
+          1093, 1680, 2350, 2415, 2514, 2516, 2521, 2524, 2525, 2541, 2545,
+          2549, 2551, 2552, 2559, 2563, 2581
+        ]
+      }
+    ],
+    "order4": [
+      {
+        "name": "category1 order4",
+        "objectsId": [
+          2415, 2515, 2518, 2524, 2526, 2528, 2529, 2541, 2547, 2553, 2556,
+          2557, 2570, 2576, 6753
+        ]
+      },
+      {
+        "name": "category2 order4",
+        "objectsId": [
+          1768, 2503, 2504, 2505, 2512, 2527, 2530, 2555, 2561, 2562, 2563,
+          2569, 2572, 2575, 6660, 10731
+        ]
+      },
+      {
+        "name": "category3 order4",
+        "objectsId": [
+          2011, 2350, 2508, 2525, 2532, 2543, 2546, 2548, 2551, 2559, 10875
+        ]
+      },
+      {
+        "name": "category4 order4",
+        "objectsId": [
+          487, 1562, 2516, 2519, 2520, 2521, 2522, 2545, 2558, 2567, 6928
+        ]
+      },
+      {
+        "name": "category5 order4",
+        "objectsId": [
+          1093, 2502, 2513, 2514, 2517, 2531, 2533, 2540, 2544, 2549, 2554,
+          2560, 6816
+        ]
+      },
+      {
+        "name": "category6 order4",
+        "objectsId": [1680, 2506, 2510, 2542, 2552, 2581]
+      }
+    ]
+  }
+}

@@ -695,7 +695,51 @@ const jsonResult = {
                 name : "category4 order2",
                 objectsId : []
             }
-        ]
+        ],
+        order3 : [
+          {
+              name : "category1 order3",
+              objectsId : []
+          },
+          {
+              name : "category2 order3",
+              objectsId : []
+          },
+          {
+              name : "category3 order3",
+              objectsId : []
+          },
+          {
+              name : "category4 order3",
+              objectsId : []
+          }
+      ],
+      order4 : [
+        {
+            name : "category1 order4",
+            objectsId : []
+        },
+        {
+            name : "category2 order4",
+            objectsId : []
+        },
+        {
+            name : "category3 order4",
+            objectsId : []
+        },
+        {
+            name : "category4 order4",
+            objectsId : []
+        },
+        {
+            name : "category5 order4",
+            objectsId : []
+        },
+        {
+            name : "category6 order4",
+            objectsId : []
+        }
+    ]
     }
 }
 
@@ -714,10 +758,12 @@ Object.values(projectsData.planesData).forEach(image => {
 allId.forEach(id => {
     jsonResult.categories.order1[Math.floor(Math.random() * jsonResult.categories.order1.length)].objectsId.push(id)
     jsonResult.categories.order2[Math.floor(Math.random() * jsonResult.categories.order2.length)].objectsId.push(id)
+    jsonResult.categories.order3[Math.floor(Math.random() * jsonResult.categories.order3.length)].objectsId.push(id)
+    jsonResult.categories.order4[Math.floor(Math.random() * jsonResult.categories.order4.length)].objectsId.push(id)
 })
 
 // stringify JSON Object
 var jsonContent = JSON.stringify(jsonResult);
 console.log(jsonContent);
 
-fs.writeFile("output.json", jsonContent, 'utf8');
+fs.writeFile("output.json", jsonContent, () => {});
