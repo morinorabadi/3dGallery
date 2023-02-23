@@ -1,3 +1,5 @@
+import {gsap} from "gsap";
+
 export default class Show
 {
   constructor(redlibcore, event){
@@ -36,18 +38,33 @@ export default class Show
       }
     })
 
-    this.update = (object) => {
-      if (image){
-        image.remove()
-        image = undefined
-      }
-
+    this.active = (object) => {
       image = object.element.cloneNode(true);
       image.removeAttribute('style')
       image.children[0].style.opacity = 1
       image.classList.remove('image-container')
       image.classList.add('image-show')
       parent.appendChild(image)
+      gsap.from(image, {
+        opacity : 0,
+        duration : 0.4,
+      })
+    }
+
+    this.deActive = () => {
+      if (image){
+        let oldImage = image.cloneNode(true);
+        image.remove()
+        image = undefined
+        gsap.to(oldImage, {
+          opacity : 0,
+          duration : 0.4,
+          onComplete : () => {
+            oldImage.remove()
+            oldImage = undefined
+          }
+        })
+      }
     }
   }
 }

@@ -10,11 +10,11 @@ import Wheel from './utils/wheel';
 
 import RotateWheel from './inputs/RotateWheel'
 import Show from './show/show';
+import Menu from './show/Menu';
 
 let data;
 
 function init(){
-    console.log(data);
     // create red lib
     const redlibcore = new RedLib()
 
@@ -24,18 +24,37 @@ function init(){
     // wheel
     const wheel = new Wheel(data)
     scene.add(wheel)
-    wheel.generate(data.categories.order1)
+
+    // create menu
+    let currentOrder = undefined
+    const changeOrder = (order) => {
+        if ( currentOrder ){ currentOrder.element.classList.remove('active') }
+        wheel.generate(data.categories[order])
+        currentOrder = data.categories[order]
+        currentOrder.element.classList.add('active')
+    }
+    const menu = new Menu(data, changeOrder)
+
+    // active first object
+    changeOrder(Object.keys(data.categories)[0])
 
     // rotate Wheel
     const rotateWheel = new RotateWheel(redlibcore, wheel)
 
 
+    // create show class and add events
     const show = new Show(redlibcore, data.event )
-    // listen to hover effect
+
     data.event.addCallBack("activeImage", (object, isHover) => {
         // check if camera is in top mode
-        if (data.cameraMode !== "top" && isHover){ return }
-        show.update(object)
+        // if (data.cameraMode !== "top" && isHover){ return }
+        show.active(object)
+    })
+
+    data.event.addCallBack("deActiveImage", (object, isHover) => {
+        // check if camera is in top mode
+        // if (data.cameraMode !== "top" && isHover){ return }
+        show.deActive(object)
     })
 
     const camera = new Camera(redlibcore)

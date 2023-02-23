@@ -15,6 +15,7 @@ export default async function load()
       // create Event object
       data.event = new Events()
       data.event.addEvent('activeImage')
+      data.event.addEvent('deActiveImage')
       
       const loadingElement = document.querySelector('#loading p')
   

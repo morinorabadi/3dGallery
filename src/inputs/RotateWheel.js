@@ -33,9 +33,7 @@ export default class RotateWheel
       if (!isRotateAround){ return }
       const rotate = rotateAmount * delta * RotateDelta
       rotateAmount -= rotate
-      // wheel.rotation.y += rotate * wheelRotateAmount
       wheel.rotateY(rotate* wheelRotateAmount )
-      // console.log(rotateAmount);
       if (Math.abs(rotateAmount) < 0.1){
         isRotateAround = false
       }
