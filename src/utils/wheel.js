@@ -33,7 +33,7 @@ export default class Wheel extends THREE.Group
     function activeImage(object){
       if (!activeImageObject.image){ return }
       if (activeImageObject.image.id == object.image.id ) {return}
-
+      console.log(" gg is called ");
       // de active Old activeImageObject
       deActiveImage()
 

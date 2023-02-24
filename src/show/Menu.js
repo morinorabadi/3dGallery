@@ -5,13 +5,40 @@ export default class Menu
     // extract orders text
     const orders = Object.keys(data.categories)
     
-    // set holder width
-    const holderWidth = 480
-    holder.style.width = holderWidth + "px"
+
 
     // calculate p and span width
-    const spanWidth = (holderWidth / (orders.length-2 )) / 10
-    const pWidth = (holderWidth / orders.length -1 ) - (spanWidth * (orders.length -2) )
+    this.resize = (x) => {
+      let holderWidth;
+      if (x > 800){
+        holderWidth = 540
+      } else {
+        holderWidth = x * 0.6
+      }
+
+      const pWidth = (holderWidth / orders.length -1 ) - (spanWidth * (orders.length -2) )
+      const spanWidth = (holderWidth / (orders.length-2 )) / 10
+
+      // set holder width
+      
+      holder.style.width = holderWidth + "px"
+      // resize menu
+      
+
+      for (var i = 0; i < holder.children.length; i++) {
+        
+        const element = holder.children[i]
+        
+        element.style.fontSize = spanWidth + "px"
+        if (element.nodeName == "P"){
+          element.style.width = pWidth + "px"
+        } else {
+          element.style.width = spanWidth + "px"
+        }
+        // Do stuff
+      }
+
+    }
     
     // generate menu button for each order
     orders.forEach((orderText, index) => {
@@ -19,7 +46,6 @@ export default class Menu
         // create p element
         const order = document.createElement('p')
         order.innerText = orderText
-        order.style.width = pWidth + "px"
         order.addEventListener('click', () => { onChange(orderText) })
         holder.appendChild(order)
 
@@ -30,7 +56,6 @@ export default class Menu
             // create span element
             const span = document.createElement('span')
             span.innerText = "|"
-            span.style.width = spanWidth + "px"
             holder.appendChild(span)
         }
     })

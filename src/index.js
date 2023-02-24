@@ -43,32 +43,113 @@ function init(){
 
 
     // create show class and add events
-    const show = new Show(redlibcore, data.event )
+    const show = new Show()
 
     data.event.addCallBack("activeImage", (object, isHover) => {
-        // check if camera is in top mode
-        // if (data.cameraMode !== "top" && isHover){ return }
         show.active(object)
     })
 
-    data.event.addCallBack("deActiveImage", (object, isHover) => {
-        // check if camera is in top mode
-        // if (data.cameraMode !== "top" && isHover){ return }
-        show.deActive(object)
+    data.event.addCallBack("deActiveImage", () => {
+        show.deActive()
     })
 
-    const camera = new Camera(redlibcore)
-    data.event.addEvent('cameraMode')
-    data.event.addCallBack("cameraMode", (mode) => {
-        data.cameraMode = mode
-        camera.setMode(mode)
-    })
-    data.event.callEvent("cameraMode", "mid")
+    // createCamera
+    const camera = new Camera()
 
     // create renderer
     const renderer = new Renderer(redlibcore,scene,camera)
 
-    console.log(data);
+    function resize({x ,y ,showXY , showTop, showLeft, rendererTop, rendererLeft}){
+
+      // show x and y
+      show.domElement.style.width = showXY + "px";
+      show.domElement.style.height = showXY + "px";
+
+      // show top and left
+      show.domElement.style.left = (showLeft || 0) + "px";
+      show.domElement.style.top = (showTop || 0) + "px";
+
+      // renderer x and y
+      renderer.setSize(x , y)
+
+      // renderer top and left
+      renderer.domElement.style.top = (rendererTop || 0) + "px";
+      renderer.domElement.style.left = (rendererLeft || 0) + "px";
+    }
+
+    redlibcore.globalEvent.addCallBack('resize', (sizes) => {
+        const { x , y } = sizes
+        if ( x > y * 1.4 ) {
+
+          camera.setMode("top")
+          resize({
+            x: y * 1.4,
+            y : y,
+            rendererLeft : (x - y * 1.4 ) / 2,
+            showXY : y * 0.5,
+            showTop : y * 0.20, 
+            showLeft : (x - y * 0.5 ) / 2
+          })
+
+        } else if ( x > y * 1.2 ) {
+
+          camera.setMode("mid")
+          resize({
+            x: y * 0.65 ,
+            y : y * 0.65 ,
+            showXY : y * 0.65,
+            rendererLeft : (x - y * 0.65 ),
+            rendererTop : 0.15 * y ,
+            showTop : y * 0.15, 
+          })
+
+        } else if ( x > y * 0.8 ) {
+
+          camera.setMode("mid")
+          resize({
+            x: x * 0.6 ,
+            y : x * 0.6 ,
+            rendererLeft : x * 0.4,
+            rendererTop : y - (x * 0.6),
+            showXY : x * 0.6,
+          })
+
+        } else {
+          // mobile
+          camera.setMode("mid")
+          if ( y > x * 2 ){
+
+            const space = (y - (x * 2)) / 3
+            resize({
+              x: x,
+              y : x,
+              rendererTop : (space * 2) + x,
+              showXY : x,
+              showTop : space
+            })
+
+          } else {
+
+            resize({
+              x: y /2,
+              y : y /2,
+              rendererTop : y /2 ,
+              rendererLeft : (x - y/2),
+              showXY : y /2,
+            })
+
+          }
+        }
+
+        // resize menu
+        menu.resize(x)
+
+        // resize camera
+        camera.aspect = x / y
+        camera.updateProjectionMatrix();
+    })
+
+
     redlibcore.sizes.resize()
 }
 

@@ -1,29 +1,54 @@
 import { PerspectiveCamera, Vector3 } from 'three'
-
+import { gsap } from 'gsap'
 export default class Camera extends PerspectiveCamera
 {
-  constructor(redlibcore){
+  constructor(){
     super(45,window.innerWidth/window.innerHeight, 0.1, 100)
+
+    // start position and lookAt
+    this.position.set( new Vector3(7000,0,-4000))
+    let startLookAt = new Vector3(8000,0,4000)
+    this.lookAt(startLookAt)
 
     let currentMode = ""
     const changeCameraPosition = (mode) => {
       currentMode = mode
-      switch (mode) {
-        case "start":
-          this.position.set(0,8000,-13000)
-          this.lookAt(new Vector3(0,0,-1000))
-          break
 
+      let toPosition;
+      let toLookAt;
+
+      switch (mode) {
         case "top":
-          this.position.set(0,8000,-10500)
-          this.lookAt(new Vector3(0,0,-2000))
+          // camera position
+          toPosition = new Vector3(0,8000,-10500)
+          // camera look at position
+          toLookAt =   new Vector3(0,0,-2000)
           break;
 
         case "mid":
-          this.position.set(7000,1000,-3000)
-          this.lookAt(new Vector3(6000,-500,0))
+          // camera position
+          toPosition = new Vector3(7500,1200,-3000)
+          // camera look at position
+          toLookAt =   new Vector3(6500,0,0)
           break;
       }
+
+      gsap.to(this.position,{
+        duration : 2,
+        x : toPosition.x,
+        y : toPosition.y,
+        z : toPosition.z,
+      })
+
+      gsap.to(startLookAt,{
+        duration : 2,
+        x : toLookAt.x,
+        y : toLookAt.y,
+        z : toLookAt.z,
+        onUpdate : () => {
+          this.lookAt(toLookAt)
+        }
+      })
     }
 
     this.setMode = (mode) => {
@@ -31,11 +56,6 @@ export default class Camera extends PerspectiveCamera
         changeCameraPosition(mode)
       }
     }
-
-    redlibcore.globalEvent.addCallBack('resize', (sizes) => { 
-        this.aspect = sizes.x / sizes.y
-        this.updateProjectionMatrix();
-    })
     
   }
 }
