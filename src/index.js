@@ -26,12 +26,8 @@ function init(){
     scene.add(wheel)
 
     // create menu
-    let currentOrder = undefined
     const changeOrder = (order) => {
-        if ( currentOrder ){ currentOrder.element.classList.remove('active') }
-        wheel.generate(data.categories[order])
-        currentOrder = data.categories[order]
-        currentOrder.element.classList.add('active')
+      wheel.generate(data.categories[order])
     }
     const menu = new Menu(data, changeOrder)
 
@@ -41,16 +37,15 @@ function init(){
     // rotate Wheel
     const rotateWheel = new RotateWheel(redlibcore, wheel)
 
-
     // create show class and add events
     const show = new Show()
 
-    data.event.addCallBack("activeImage", (object, isHover) => {
-        show.active(object)
+    data.event.addCallBack("activeImage", (object) => {
+      show.active(object)
     })
 
     data.event.addCallBack("deActiveImage", () => {
-        show.deActive()
+      show.deActive()
     })
 
     // createCamera
@@ -61,10 +56,11 @@ function init(){
 
     function resize({x ,y ,showXY , showTop, showLeft, rendererTop, rendererLeft}){
 
-      // show x and y
+      // show x and y and fontSize
       show.domElement.style.width = showXY + "px";
       show.domElement.style.height = showXY + "px";
-
+      show.domElement.style.fontSize = (showXY * 0.05 ) + "px";
+      
       // show top and left
       show.domElement.style.left = (showLeft || 0) + "px";
       show.domElement.style.top = (showTop || 0) + "px";
@@ -82,18 +78,20 @@ function init(){
         if ( x > y * 1.4 ) {
 
           camera.setMode("top")
+          wheel.setMode("top")
           resize({
             x: y * 1.4,
             y : y,
             rendererLeft : (x - y * 1.4 ) / 2,
-            showXY : y * 0.5,
-            showTop : y * 0.20, 
-            showLeft : (x - y * 0.5 ) / 2
+            showXY : y * 0.4,
+            showTop : y * 0.25, 
+            showLeft : (x - y * 0.4 ) / 2
           })
 
         } else if ( x > y * 1.2 ) {
 
           camera.setMode("mid")
+          wheel.setMode("mid")
           resize({
             x: y * 0.65 ,
             y : y * 0.65 ,
@@ -106,6 +104,7 @@ function init(){
         } else if ( x > y * 0.8 ) {
 
           camera.setMode("mid")
+          wheel.setMode("mid")
           resize({
             x: x * 0.6 ,
             y : x * 0.6 ,
@@ -117,6 +116,7 @@ function init(){
         } else {
           // mobile
           camera.setMode("mid")
+          wheel.setMode("mid")
           if ( y > x * 2 ){
 
             const space = (y - (x * 2)) / 3
@@ -150,7 +150,13 @@ function init(){
     })
 
 
-    redlibcore.sizes.resize()
+    const setIntervalId = setInterval(() => {
+      redlibcore.sizes.resize()
+      console.log("ok");
+    },300)
+    setTimeout(() => { 
+      clearInterval(setIntervalId)
+    }, 5000)
 }
 
 load().then((_data) => {

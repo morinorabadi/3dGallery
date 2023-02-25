@@ -18,10 +18,11 @@ export default class Wheel extends THREE.Group
     const radius = 6000
     const activeRadius = 6500
     let currentY = 0
+    const imageScale = 2
 
     let orderedImages = []
 
-    let categoriesTitle = []
+    let categories = []
 
     function calculatePositionWithAngle(angle, radius){
       const position = new THREE.Vector2(radius,0)
@@ -33,7 +34,6 @@ export default class Wheel extends THREE.Group
     function activeImage(object){
       if (!activeImageObject.image){ return }
       if (activeImageObject.image.id == object.image.id ) {return}
-      console.log(" gg is called ");
       // de active Old activeImageObject
       deActiveImage()
 
@@ -41,7 +41,7 @@ export default class Wheel extends THREE.Group
       activeImageObject = object
       activeImageObject.image.element.children[0].style.opacity = 1
       activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, activeRadius))
-      event.callEvent('activeImage', activeImageObject.image)
+      event.callEvent('activeImage', activeImageObject)
 
     }
 
@@ -56,25 +56,50 @@ export default class Wheel extends THREE.Group
       }
     }
 
+    let mode = ""
+    this.setMode = (_mode) => {
+      mode = _mode
+    }
 
     this.rotateY = (angle) => {
       currentY += angle
-      
+      let isToMuch = angle > 8
+
+      // update images position
       orderedImages.forEach(object => {
         if ( object.image !== undefined ){
           const imageAngle = object.angle + currentY
           object.image.object3d.position.copy(calculatePositionWithAngle(imageAngle, radius))
           object.image.object3d.rotation.y = -imageAngle * (Math.PI/180)
-          if (!this.isGenerating){
-            if ( imageAngle % 360 < 3){
+          if (!this.isGenerating && !isToMuch){
+            if ( Math.abs(imageAngle % 360) < 1){
               activeImage(object)
             }
           }
         }
       })
+
+      // update active image position
       if (activeImageObject.image !== undefined ){
         activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, activeRadius))
       }
+      // update categories position
+      categories.forEach(category => {
+        const categoryAngle = category.angle + currentY
+        if (mode == "top"){
+          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius + 1200))
+          category.element.style.fontSize = 160 + "px"
+          category.object3d.position.y += 800
+          category.object3d.lookAt(new THREE.Vector3(0,8000,-10500))
+          category.object3d.rotation.z = 0 
+          category.object3d.scale.set(-imageScale,-imageScale,imageScale)
+        } else {
+          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius))
+          category.element.style.fontSize = 40 + "px"
+          category.object3d.position.y -= 400
+          category.object3d.rotation.y = -categoryAngle * (Math.PI/180)
+        }
+      })
     }
 
     const fadeOUt = () => {
@@ -82,6 +107,15 @@ export default class Wheel extends THREE.Group
 
         // create object to hold rotation params
         const lorem = { amount : 0, rotateAmount : 0 }
+
+        categories.forEach(category => {
+          gsap.to(category.element,{
+            opacity : 0,
+            duration : 0.5,
+            onComplete : () => {
+            }
+          })
+        })
 
         // skip number
         const skip = Math.floor(orderedImages.length / 6)
@@ -176,7 +210,17 @@ export default class Wheel extends THREE.Group
               
             })
           },
-          onComplete : () => { resolve() }
+          onComplete : () => { 
+            resolve()
+            categories.forEach(category => {
+              gsap.to(category.element,{
+                opacity : 1,
+                duration : 0.5,
+                onComplete : () => {
+                }
+              })
+            })    
+          }
         })
       })
     }
@@ -187,6 +231,7 @@ export default class Wheel extends THREE.Group
     // create wheel
     this.generate = async (order) => {
       return new Promise( async (resolve, _) => {
+        if (this.isGenerating) { return }
 
         // de active Image id exist
         deActiveImage()
@@ -197,13 +242,14 @@ export default class Wheel extends THREE.Group
         }
         const imageIds = []
         this.clear()
+        categories = []
 
         order.forEach( category => {
           let ifFirst = true
           category.objectsId.forEach( id => {
             if ( ifFirst ){
               ifFirst = false
-              categoriesTitle.push({
+              categories.push({
                 id : id,
                 text : category.name
               })
@@ -216,9 +262,9 @@ export default class Wheel extends THREE.Group
         })
 
         orderedImages = []
+        
         let index = 0
-        const imageScale = 2
-
+        let currentCategoryText = ""
         for (let angle = 0; angle < 360; angle+= 360 / imageIds.length ) {
 
           // scale
@@ -226,7 +272,27 @@ export default class Wheel extends THREE.Group
           index++
 
           if (id !== undefined){
-            
+
+
+            const category = categories.find( lorem => lorem.id == id )
+            if ( category ){
+              category.element = document.createElement("p")
+              category.element.classList.add("gategory")
+              category.element.style.opacity = 0
+              category.element.innerText =  category.text
+              
+              category.object3d = new CSS3DObject(category.element)
+
+              category.object3d.scale.set(-imageScale,imageScale,imageScale)
+              category.object3d.position.y += 150
+
+              category.angle = angle
+
+              this.add(category.object3d)
+
+              currentCategoryText = category.text
+            }
+
             // find image
             const image = objects.find( object => object.id == id )
             
@@ -234,22 +300,7 @@ export default class Wheel extends THREE.Group
             image.object3d.scale.set(-imageScale,imageScale,imageScale)
 
             this.add(image.object3d)
-            orderedImages.push({ image, angle })
-            
-            const categoriesPargeraf = categoriesTitle.find( lorem => lorem.id == id )
-            if ( categoriesPargeraf ){
-              
-              const categoriesElement = document.createElement("p")
-              categoriesElement.classList.add("gategory")
-              categoriesElement.innerText = categoriesPargeraf.text
-              
-              const categoriesObject = new CSS3DObject(categoriesElement)
-
-              categoriesObject.scale.set(-imageScale,imageScale,imageScale)
-              categoriesObject.position.y += 150
-
-              //this.add(categoriesObject)
-            }
+            orderedImages.push({ image, angle, category : currentCategoryText })
 
           } else {
             orderedImages.push({ angle })

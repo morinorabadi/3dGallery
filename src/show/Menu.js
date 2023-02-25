@@ -1,3 +1,5 @@
+import { gsap } from 'gsap'
+
 export default class Menu
 {
   constructor(data, onChange){
@@ -39,14 +41,39 @@ export default class Menu
       }
 
     }
-    
+
+
+    const fadeInOut = () => {
+      gsap.to('#menu', {
+        duration : 1,
+        y : 100,
+        onComplete : () => {
+          if (oldElement){oldElement.classList.remove('active')}
+          currentElement.classList.add('active')
+          oldElement = currentElement
+          gsap.to('#menu', {
+            duration : 1,
+            y : 0,
+            delay : 3.5
+          })
+        }
+      })
+      holder.style.top
+    }
+
+    let oldElement;
+    let currentElement;
     // generate menu button for each order
     orders.forEach((orderText, index) => {
 
         // create p element
         const order = document.createElement('p')
         order.innerText = orderText
-        order.addEventListener('click', () => { onChange(orderText) })
+        order.addEventListener('click', () => { 
+          onChange(orderText),
+          fadeInOut()
+          currentElement = order
+        })
         holder.appendChild(order)
 
         // save element in data object

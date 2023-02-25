@@ -20,7 +20,7 @@ export default class Camera extends PerspectiveCamera
       switch (mode) {
         case "top":
           // camera position
-          toPosition = new Vector3(0,8000,-10500)
+          toPosition = new Vector3(0,11000,-14500)
           // camera look at position
           toLookAt =   new Vector3(0,0,-2000)
           break;
