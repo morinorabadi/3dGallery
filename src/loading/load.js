@@ -25,17 +25,6 @@ export default async function load()
           const percent = count / all * 100
           loadingElement.innerText = `loading ${Math.floor(percent)} %`
       }))
-
-
-      // delete fade out and delete loading element
-      gsap.to("#loading", {
-        duration : 1,
-        opacity : 0,
-        onComplete : () => {
-          document.getElementById('loading').remove()
-        }
-      })
-
       resolve(data)
     } catch (error) {
       console.error("something go wrong with connection try again later");

@@ -1,5 +1,6 @@
 import './style.sass'
 import * as THREE from 'three'
+import { gsap } from 'gsap'
 
 import RedLib from './redlib/core'
 
@@ -73,12 +74,14 @@ function init(){
       renderer.domElement.style.left = (rendererLeft || 0) + "px";
     }
 
+    let mode = ""
+
     redlibcore.globalEvent.addCallBack('resize', (sizes) => {
         const { x , y } = sizes
         if ( x > y * 1.4 ) {
-
-          camera.setMode("top")
-          wheel.setMode("top")
+          mode = "top"
+          camera.setMode(mode)
+          wheel.setMode(mode)
           resize({
             x: y * 1.4,
             y : y,
@@ -90,8 +93,9 @@ function init(){
 
         } else if ( x > y * 1.2 ) {
 
-          camera.setMode("mid")
-          wheel.setMode("mid")
+          mode = "mid"
+          camera.setMode(mode)
+          wheel.setMode(mode)
           resize({
             x: y * 0.65 ,
             y : y * 0.65 ,
@@ -103,8 +107,9 @@ function init(){
 
         } else if ( x > y * 0.8 ) {
 
-          camera.setMode("mid")
-          wheel.setMode("mid")
+          mode = "mid"
+          camera.setMode(mode)
+          wheel.setMode(mode)
           resize({
             x: x * 0.6 ,
             y : x * 0.6 ,
@@ -115,8 +120,9 @@ function init(){
 
         } else {
           // mobile
-          camera.setMode("mid")
-          wheel.setMode("mid")
+          mode = "mid"
+          camera.setMode(mode)
+          wheel.setMode(mode)
           if ( y > x * 2 ){
 
             const space = (y - (x * 2)) / 3
@@ -150,13 +156,39 @@ function init(){
     })
 
 
-    const setIntervalId = setInterval(() => {
-      redlibcore.sizes.resize()
-      console.log("ok");
-    },300)
-    setTimeout(() => { 
-      clearInterval(setIntervalId)
-    }, 5000)
+    redlibcore.sizes.resize()
+
+    // start animation
+    const startTimeLine = gsap.timeline()
+
+    // fade out and delete loading element
+    startTimeLine.to("#loading", {
+      duration : 1,
+      opacity : 0,
+      onComplete : () => {
+        document.getElementById('loading').remove()
+      }
+    })
+
+    startTimeLine.from("#show",{
+      duration : 2,
+      x : window.innerWidth,
+      onComplete : () => {
+        camera.isStarted = true
+        camera.setMode(mode)
+      }
+    })
+
+    startTimeLine.from("#scene",{
+      duration : 3,
+      x : window.innerWidth,
+    })
+
+    startTimeLine.from('#menu', {
+      duration : 1,
+      y : window.innerHeight
+    })
+
 }
 
 load().then((_data) => {

@@ -56,9 +56,36 @@ export default class Wheel extends THREE.Group
       }
     }
 
+    const  updateCategories = () => {
+      // update categories position
+      categories.forEach(category => {
+        const categoryAngle = category.angle + currentY
+        if (mode == "top"){
+          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius + 1200))
+          category.element.style.fontSize = 160 + "px"
+          category.object3d.position.y += 800
+          category.object3d.lookAt(new THREE.Vector3(0,8000,-10500))
+          category.object3d.rotation.z = 0 
+        } else {
+          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius))
+          category.element.style.fontSize = 50 + "px"
+          category.object3d.position.y -= 400
+          category.object3d.rotation.set(0 , -categoryAngle * (Math.PI/180), 0)
+        }
+      })
+    }
+
     let mode = ""
     this.setMode = (_mode) => {
       mode = _mode
+      updateCategories()
+      categories.forEach(category => {
+        if ( mode == "top"){
+          category.object3d.scale.set(-imageScale,-imageScale,imageScale)
+        } else {
+          category.object3d.scale.set(-imageScale,imageScale,imageScale)
+        }
+      })
     }
 
     this.rotateY = (angle) => {
@@ -83,23 +110,8 @@ export default class Wheel extends THREE.Group
       if (activeImageObject.image !== undefined ){
         activeImageObject.image.object3d.position.copy(calculatePositionWithAngle(activeImageObject.angle + currentY, activeRadius))
       }
-      // update categories position
-      categories.forEach(category => {
-        const categoryAngle = category.angle + currentY
-        if (mode == "top"){
-          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius + 1200))
-          category.element.style.fontSize = 160 + "px"
-          category.object3d.position.y += 800
-          category.object3d.lookAt(new THREE.Vector3(0,8000,-10500))
-          category.object3d.rotation.z = 0 
-          category.object3d.scale.set(-imageScale,-imageScale,imageScale)
-        } else {
-          category.object3d.position.copy(calculatePositionWithAngle(categoryAngle, radius))
-          category.element.style.fontSize = 40 + "px"
-          category.object3d.position.y -= 400
-          category.object3d.rotation.y = -categoryAngle * (Math.PI/180)
-        }
-      })
+
+      updateCategories()
     }
 
     const fadeOUt = () => {

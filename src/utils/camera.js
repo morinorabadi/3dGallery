@@ -6,12 +6,17 @@ export default class Camera extends PerspectiveCamera
     super(45,window.innerWidth/window.innerHeight, 0.1, 100)
 
     // start position and lookAt
-    this.position.set( new Vector3(7000,0,-4000))
-    let startLookAt = new Vector3(8000,0,4000)
+    this.position.set(8000,18000,-50000)
+    let startLookAt = new Vector3(0,0,-8000)
     this.lookAt(startLookAt)
 
+    this.isStarted = false
     let currentMode = ""
-    const changeCameraPosition = (mode) => {
+    this.setMode = (mode) => {
+      
+      if (!this.isStarted){ return }
+      if ( currentMode == mode ){ return } 
+      
       currentMode = mode
 
       let toPosition;
@@ -33,15 +38,17 @@ export default class Camera extends PerspectiveCamera
           break;
       }
 
+      // part one go to center
       gsap.to(this.position,{
-        duration : 2,
+        duration : 3,
         x : toPosition.x,
         y : toPosition.y,
         z : toPosition.z,
       })
 
+      // let startLookAt = startLookAt.clone()
       gsap.to(startLookAt,{
-        duration : 2,
+        duration : 3,
         x : toLookAt.x,
         y : toLookAt.y,
         z : toLookAt.z,
@@ -49,12 +56,6 @@ export default class Camera extends PerspectiveCamera
           this.lookAt(toLookAt)
         }
       })
-    }
-
-    this.setMode = (mode) => {
-      if ( currentMode !== mode ){
-        changeCameraPosition(mode)
-      }
     }
     
   }
